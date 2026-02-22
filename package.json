@@ -6,11 +6,11 @@
   "license": "MIT",
 
   "scripts": {
-    "dev": "NODE_ENV=development tsx server/index.ts",
+    "dev": "tsx server/index.ts",
 
-    "build": "vite build && tsc || true",
+    "build": "tsc || true",
 
-    "start": "NODE_ENV=production node --loader tsx server/index.ts",
+    "start": "tsx server/index.ts"
 
     "check": "tsc",
 
