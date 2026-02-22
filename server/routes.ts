@@ -3,8 +3,6 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
-import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integrations/auth";
-import { openai } from "./replit_integrations/audio/client";
 import { getMethodologyContext, getRelevantDrills, formatDrillsForPrompt, assembleTrainingFromDatabase } from "./drillSeedData";
 
 // --- AI Logic ---
