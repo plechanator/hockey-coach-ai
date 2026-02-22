@@ -5,7 +5,7 @@
   "type": "module",
 
   "scripts": {
-    "build": "cd client && npm install && npm run build",
+    "build": "echo build skipped",
     "start": "node --import tsx server/index.ts",
     "dev": "tsx watch server/index.ts"
   },
@@ -15,7 +15,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "openai": "^4.56.0",
-    "tsx": "^4.19.0"
+    "tsx": "^4.20.5"
   },
 
   "engines": {
