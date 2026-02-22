@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: 215 28% 17%;       /* #1E2A3A - softer slate-navy */
+  --teal: 186 50% 42%;       /* #378B9B - calming teal accent */
+  --gray-light: 210 20% 98%; /* #F8F9FB */
+  --text-dark: 215 25% 20%;  /* #273040 */
+  --blue-accent: 205 70% 50%; /* #2693C4 */
+
+  --warmup-color: 205 55% 52%;    /* Soft blue for warmup */
+  --main-color: 215 28% 30%;      /* Slate for main part */
+  --finish-color: 15 65% 55%;     /* Warm coral for finish */
+
+  --background: 210 20% 98%;
+  --foreground: 215 25% 20%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 215 25% 20%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 25% 20%;
+
+  --primary: 215 28% 17%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 210 18% 96%;
+  --secondary-foreground: 215 25% 25%;
+
+  --muted: 210 14% 95%;
+  --muted-foreground: 215 12% 50%;
+
+  --accent: 186 50% 42%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 65% 55%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 214 20% 91%;
+  --input: 214 20% 91%;
+  --ring: 186 50% 42%;
+
+  --radius: 0.5rem;
+
+  --chart-1: 186 50% 42%;
+  --chart-2: 205 55% 52%;
+  --chart-3: 15 55% 55%;
+  --chart-4: 150 40% 48%;
+  --chart-5: 260 35% 55%;
+
+  --font-sans: 'DM Sans', 'Inter', sans-serif;
+  --font-display: 'DM Sans', 'Inter', sans-serif;
+}
+
+.dark {
+  --background: 215 28% 10%;
+  --foreground: 210 20% 93%;
+
+  --card: 215 25% 13%;
+  --card-foreground: 210 20% 93%;
+
+  --popover: 215 25% 13%;
+  --popover-foreground: 210 20% 93%;
+
+  --primary: 210 20% 93%;
+  --primary-foreground: 215 28% 12%;
+
+  --secondary: 215 20% 20%;
+  --secondary-foreground: 210 20% 90%;
+
+  --muted: 215 18% 20%;
+  --muted-foreground: 215 14% 58%;
+
+  --accent: 186 45% 45%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 55% 40%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 215 18% 22%;
+  --input: 215 18% 22%;
+  --ring: 186 45% 45%;
+
+  --chart-1: 186 45% 50%;
+  --chart-2: 205 50% 55%;
+  --chart-3: 15 50% 58%;
+  --chart-4: 150 35% 52%;
+  --chart-5: 260 30% 58%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-semibold tracking-normal text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+
+  .dashboard-card {
+    @apply bg-card rounded-md border border-border shadow-sm transition-shadow duration-200;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-secondary/50 hover:text-primary;
+  }
+  
+  .nav-item.active {
+    @apply bg-primary/10 text-primary font-semibold;
+  }
+
+  .phase-warmup {
+    border-left: 3px solid hsl(var(--warmup-color));
+  }
+  .phase-main {
+    border-left: 3px solid hsl(var(--main-color));
+  }
+  .phase-finish {
+    border-left: 3px solid hsl(var(--finish-color));
+  }
+
+  .phase-warmup-bg {
+    background: linear-gradient(90deg, hsl(var(--warmup-color) / 0.06), transparent);
+  }
+  .phase-main-bg {
+    background: linear-gradient(90deg, hsl(var(--main-color) / 0.06), transparent);
+  }
+  .phase-finish-bg {
+    background: linear-gradient(90deg, hsl(var(--finish-color) / 0.06), transparent);
+  }
+
+  .phase-warmup-dot {
+    @apply w-2.5 h-2.5 rounded-full;
+    background: hsl(var(--warmup-color));
+  }
+  .phase-main-dot {
+    @apply w-2.5 h-2.5 rounded-full;
+    background: hsl(var(--main-color));
+  }
+  .phase-finish-dot {
+    @apply w-2.5 h-2.5 rounded-full;
+    background: hsl(var(--finish-color));
+  }
+
+  .stick-divider {
+    @apply relative my-6;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
+  }
+
+  .puck-icon {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-full;
+    background: hsl(var(--navy));
+    box-shadow: inset 0 -1px 2px rgba(255,255,255,0.1), 0 1px 3px rgba(0,0,0,0.15);
+  }
+
+  .jersey-number {
+    font-family: var(--font-display);
+    @apply font-bold text-lg;
+  }
+
+  .ice-bg {
+    background-color: hsl(210 20% 98%);
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(200, 220, 240, 0.2) 0%, transparent 70%),
+      radial-gradient(ellipse at 80% 50%, rgba(200, 220, 240, 0.15) 0%, transparent 70%);
+  }
+
+  .zone-label {
+    font-family: var(--font-display);
+    @apply text-xs font-bold uppercase tracking-widest;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== PRINT STYLES ========== */
+.print-page {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 12mm 15mm;
+  font-family: 'Inter', sans-serif;
+  font-size: 10pt;
+  color: #000;
+  background: #fff;
+  line-height: 1.4;
+}
+
+.print-toolbar {
+  max-width: 210mm;
+  margin: 8px auto 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 15mm;
+}
+
+@media print {
+  .print-toolbar {
+    display: none !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-page, .print-page * {
+    visibility: visible;
+  }
+  .print-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.print-header { margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 8px; }
+.print-header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.print-title { font-family: 'DM Sans', sans-serif; font-size: 18pt; font-weight: 700; margin: 0 0 2px 0; }
+.print-subtitle { font-size: 10pt; color: #444; margin: 0; }
+.print-meta { text-align: right; font-size: 9pt; color: #555; }
+.print-focus-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+.print-tag { border: 1px solid #999; border-radius: 3px; padding: 1px 6px; font-size: 8pt; color: #333; }
+.print-tag-small { border: 1px solid #bbb; border-radius: 2px; padding: 0 4px; font-size: 7pt; color: #555; }
+
+.print-rink-section { margin: 10px 0; page-break-inside: avoid; }
+
+.print-section { margin-bottom: 8px; page-break-inside: avoid; }
+.print-phase-header { font-family: 'DM Sans', sans-serif; font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 3px 8px; border-left: 4px solid #000; margin-bottom: 4px; background: #f0f0f0; }
+.print-phase-warmup { border-left-color: #666; }
+.print-phase-main { border-left-color: #000; }
+.print-phase-finish { border-left-color: #444; }
+.print-phase-content { padding: 4px 0 4px 12px; }
+.print-phase-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+.print-duration { font-size: 9pt; color: #555; }
+.print-description { font-size: 9pt; color: #333; margin: 2px 0; }
+
+.print-station { padding: 4px 0 4px 12px; border-bottom: 1px dashed #ccc; }
+.print-station:last-child { border-bottom: none; }
+.print-station-header { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.print-station-number { font-family: 'DM Sans', sans-serif; font-size: 14pt; font-weight: 800; width: 28px; height: 28px; border: 2px solid #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.print-station-info strong { font-size: 10pt; display: block; }
+.print-station-meta { font-size: 8pt; color: #666; }
+.print-focus-inline { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 2px; }
+.print-diagram-hint { font-size: 8pt; color: #888; font-style: italic; margin-top: 2px; }
+.print-key-points { margin-top: 4px; padding: 4px 8px; background: #f5f5f5; border-radius: 3px; }
+.print-kp-label { font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #555; }
+.print-key-points ul { margin: 2px 0 0 16px; padding: 0; }
+.print-key-points li { font-size: 8pt; color: #333; }
+
+.print-footer { margin-top: 12px; padding-top: 8px; border-top: 1px solid #999; display: flex; justify-content: space-between; font-size: 8pt; color: #888; }
+.print-notes-area { font-style: italic; }
