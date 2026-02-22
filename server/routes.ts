@@ -1,3 +1,8 @@
+import {
+  setupAuth,
+  registerAuthRoutes,
+  isAuthenticated,
+} from "./auth";
 import type { Express } from "express";
 import type { Server } from "http";
 import { storage } from "./storage";
